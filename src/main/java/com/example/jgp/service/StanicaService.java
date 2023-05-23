@@ -27,6 +27,14 @@ public class StanicaService {
         return repo.save(stanica);
     }
 
+    public Stanica update(Stanica update_stanica) {
+        Stanica stanica = findById(update_stanica.getId()).get();
+        stanica.setNaziv(update_stanica.getNaziv());
+        stanica.setLokacija(update_stanica.getLokacija());
+        stanica.setZona(update_stanica.getZona());
+        return repo.save(stanica);
+    }
+
     public void deleteById(long id) {
         repo.deleteById(id);
     }

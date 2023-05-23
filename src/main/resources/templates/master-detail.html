@@ -3,10 +3,13 @@
 <title>Javni gradski prijevoz</title>
 
 <head>
+    <a href="/admin">Administratori</a>
 </head>
 
 <body>
 
+    <br>
+    <br>
     <form th:action="@{/__${prev_id}__}">
         <input type="submit" value="Prethodna ruta"></button>
     </form>
@@ -19,9 +22,9 @@
     <form action="/ruta/update" th:object="${update_ruta}" method="post">
         <input type="hidden" name="id" th:value="${ruta.id}">
         <label for="naziv">Naziv rute:</label>
-        <input type="text" id="naziv" name="naziv" th:value="${ruta.naziv}"><br><br>
-        <label for="admin">Administrator:</label>
-        <select id="adminId" name="adminId">
+        <input type="text" name="naziv" th:value="${ruta.naziv}"><br><br>
+        <label for="adminId">Administrator:</label>
+        <select name="adminId">
             <option th:each="admin: ${admins}" th:value="${admin.id}" th:text="${admin.naziv}"
                 th:selected="${admin.id == ruta.admin.id}"></option>
         </select>
@@ -38,7 +41,6 @@
     <h3>Stanice</h3>
     <hr>
 
-
     <table>
         <tr>
             <th>#</th>
@@ -54,7 +56,7 @@
             <td th:text="${stanica.lokacija}" />
             <td th:text="${stanica.zona}" />
             <td>
-                <form>
+                <form th:action="@{/edit/__${stanica.id}__(rutaId=${ruta.id})}" method="post">
                     <input type="submit" value="Uredi"></button>
                 </form>
             </td>

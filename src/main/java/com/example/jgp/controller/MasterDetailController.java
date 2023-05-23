@@ -7,12 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.jgp.dto.RutaDTO;
 import com.example.jgp.model.Ruta;
 import com.example.jgp.service.AdminService;
 import com.example.jgp.service.RutaService;
+import com.example.jgp.service.StanicaService;
+import com.example.jgp.service.ZonaService;
 
 @Controller
 @RequestMapping("/")
@@ -23,6 +27,12 @@ public class MasterDetailController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private StanicaService stanicaService;
+
+    @Autowired
+    private ZonaService zonaService;
 
     @GetMapping("")
     public String redirectToRuta() {
@@ -44,5 +54,12 @@ public class MasterDetailController {
         model.addAttribute("admins", adminService.listAll());
         model.addAttribute("update_ruta", new RutaDTO());
         return "master-detail";
+    }
+
+    @PostMapping("/edit/{stanicaId}")
+    public String getView(Model model, @PathVariable long stanicaId, @RequestParam long rutaId) {
+        model.addAttribute("stanica", stanicaService.findById(stanicaId).get());
+        model.addAttribute("zone", zonaService.listAll());
+        return "stanica";
     }
 }

@@ -14,27 +14,13 @@
             <th>#</th>
             <th>Naziv</th>
             <th>Email</th>
-            <th></th>
-            <th></th>
         </tr>
         <tr th:each="admin: ${admins}">
             <td th:text="${admin.id}" />
             <td th:text="${admin.naziv}" />
             <td th:text="${admin.mail}" />
-            <td>
-                <form>
-                    <input type="submit" value="Uredi"></button>
-                </form>
-            </td>
-            <td>
-                <form th:action="@{/admin/remove/__${admin.id}__}" method="post">
-                    <input type="submit" value="Izbriši"></button>
-                </form>
-            </td>
         </tr>
     </table>
-    <br>
-    <button type="button">Novi administrator</button>
 
 </body>
 

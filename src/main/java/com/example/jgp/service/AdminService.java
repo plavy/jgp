@@ -26,4 +26,8 @@ public class AdminService {
     public Admin create(Admin admin) {
         return repo.save(admin);
     }
+
+    public void deleteById(long id) {
+        repo.deleteById(id);
+    }
 }

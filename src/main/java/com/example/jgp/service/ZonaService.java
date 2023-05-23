@@ -1,6 +1,7 @@
 package com.example.jgp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class ZonaService {
 
     public List<Zona> listAll() {
         return repo.findAll();
+    }
+
+    public Optional<Zona> findById(Long id) {
+        return repo.findById(id);
     }
 
     public Zona create(Zona zona) {

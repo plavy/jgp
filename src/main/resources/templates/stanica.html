@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Administratori - Javni gradski prijevoz</title>
+
+<head>
+</head>
+
+<body>
+
+    <h3>Uređivanje stanice</h3>
+    <hr>
+    <form action="/stanica/update" th:object="${stanica}" method="post">
+        <input type="hidden" name="id" th:value="${stanica.id}">
+        <label for="naziv">Naziv:</label>
+        <input type="text" name="naziv" th:value="${stanica.naziv}"><br><br>
+        <label for="lokacija">Lokacija:</label>
+        <input type="text" name="lokacija" th:value="${stanica.lokacija}"><br><br>
+        <label for="zonaId">Zona:</label>
+        <select name="zonaId">
+            <option th:each="zona: ${zone}" th:value="${zona.id}" th:text="${zona.naziv}"
+                th:selected="${zona.id == stanica.zona.id}"></option>
+        </select>
+        <br><br>
+        <input type="submit" value="Spremi">
+    </form>
+
+
+</body>
+
+</html>
