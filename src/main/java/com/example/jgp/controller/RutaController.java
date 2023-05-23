@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.jgp.dto.RutaDTO;
 import com.example.jgp.model.Ruta;
 import com.example.jgp.model.Stanica;
-import com.example.jgp.repository.StanicaRepository;
 import com.example.jgp.service.AdminService;
 import com.example.jgp.service.RutaService;
 import com.example.jgp.service.StanicaService;
@@ -25,13 +24,13 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RutaController {
 
     @Autowired
-    RutaService rutaService;
+    private RutaService rutaService;
 
     @Autowired
-    AdminService adminService;
+    private AdminService adminService;
 
     @Autowired
-    StanicaService stanicaService;
+    private StanicaService stanicaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public void update(RutaDTO update_ruta, HttpServletResponse response) {
