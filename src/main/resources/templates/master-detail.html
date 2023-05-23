@@ -11,10 +11,10 @@
     <br>
     <br>
     <form th:action="@{/__${prev_id}__}">
-        <input type="submit" value="Prethodna ruta"></button>
+        <input type="submit" value="Prethodna ruta">
     </form>
     <form th:action="@{/__${prev_id}__}">
-        <input type="submit" value="Sljedeća ruta"></button>
+        <input type="submit" value="Sljedeća ruta">
     </form>
 
     <br>
@@ -32,7 +32,7 @@
         <input type="submit" value="Spremi">
     </form>
     <form th:action="@{ruta/delete/__${ruta.id}__}" method="post">
-        <input type="submit" value="Izbriši"></button>
+        <input type="submit" value="Izbriši">
     </form>
 
     <br>
@@ -57,18 +57,20 @@
             <td th:text="${stanica.zona}" />
             <td>
                 <form th:action="@{/edit/__${stanica.id}__(rutaId=${ruta.id})}" method="post">
-                    <input type="submit" value="Uredi"></button>
+                    <input type="submit" value="Uredi">
                 </form>
             </td>
             <td>
                 <form th:action="@{/ruta/remove/__${ruta.id}__(stanicaId=${stanica.id})}" method="post">
-                    <input type="submit" value="Ukloni"></button>
+                    <input type="submit" value="Ukloni">
                 </form>
             </td>
         </tr>
     </table>
     <br>
-    <button type="button">Nova stanica</button>
+    <form th:action="@{/edit(rutaId=${ruta.id})}" method="post">
+        <input type="submit" value="Nova stanica na ruti">
+    </form>
 
 </body>
 

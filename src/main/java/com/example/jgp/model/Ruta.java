@@ -62,6 +62,10 @@ public class Ruta {
         this.stanice.remove(stanica);
     }
 
+    public void addStanica(Stanica stanica) {
+        this.stanice.add(stanica);
+    }
+
     public Admin getAdmin() {
         return admin;
     }

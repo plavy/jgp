@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jgp.dto.StanicaDTO;
+import com.example.jgp.model.Ruta;
 import com.example.jgp.model.Stanica;
+import com.example.jgp.service.RutaService;
 import com.example.jgp.service.StanicaService;
 import com.example.jgp.service.ZonaService;
 
@@ -26,22 +28,31 @@ import jakarta.servlet.http.HttpServletResponse;
 public class StanicaController {
     
     @Autowired
-    StanicaService stanicaService;
+    private StanicaService stanicaService;
 
     @Autowired
-    ZonaService zonaService;
+    private ZonaService zonaService;   
+
+    @Autowired
+    private RutaService rutaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void update(StanicaDTO update_stanica, HttpServletResponse response) {
+    public void update(StanicaDTO update_stanica, @RequestParam long rutaId, HttpServletResponse response) {
         Stanica stanica = new Stanica();
-        System.out.println("Stanica" + update_stanica.getZonaId());
-        stanica.setId(Long.valueOf(update_stanica.getId()));
         stanica.setNaziv(update_stanica.getNaziv());
         stanica.setLokacija(update_stanica.getLokacija());
         stanica.setZona(zonaService.findById(Long.valueOf(update_stanica.getZonaId())).get());
-        stanicaService.update(stanica);
+        if (! update_stanica.getId().isEmpty()) {
+            stanica.setId(Long.valueOf(update_stanica.getId()));
+            stanicaService.update(stanica);
+        } else {
+            stanicaService.create(stanica);
+            Ruta ruta = rutaService.findById(rutaId).get();
+            ruta.addStanica(stanica);
+            rutaService.update(ruta);
+        }
         try {
-            response.sendRedirect("/");
+            response.sendRedirect("/" + rutaId);
         } catch (IOException e) {
             e.printStackTrace();
         }

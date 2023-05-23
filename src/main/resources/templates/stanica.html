@@ -9,7 +9,7 @@
 
     <h3>Uređivanje stanice</h3>
     <hr>
-    <form action="/stanica/update" th:object="${stanica}" method="post">
+    <form th:action="@{/stanica/update(rutaId=${rutaId})}" th:object="${stanica}" method="post">
         <input type="hidden" name="id" th:value="${stanica.id}">
         <label for="naziv">Naziv:</label>
         <input type="text" name="naziv" th:value="${stanica.naziv}"><br><br>
@@ -23,7 +23,6 @@
         <br><br>
         <input type="submit" value="Spremi">
     </form>
-
 
 </body>
 

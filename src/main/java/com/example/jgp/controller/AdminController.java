@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.jgp.service.AdminService;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

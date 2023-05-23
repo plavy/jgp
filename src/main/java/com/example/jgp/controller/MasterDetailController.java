@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.jgp.dto.RutaDTO;
 import com.example.jgp.model.Ruta;
+import com.example.jgp.model.Stanica;
 import com.example.jgp.service.AdminService;
 import com.example.jgp.service.RutaService;
 import com.example.jgp.service.StanicaService;
@@ -57,9 +58,23 @@ public class MasterDetailController {
     }
 
     @PostMapping("/edit/{stanicaId}")
-    public String getView(Model model, @PathVariable long stanicaId, @RequestParam long rutaId) {
+    public String getEditView(Model model, @PathVariable long stanicaId, @RequestParam long rutaId) {
+        model.addAttribute("rutaId", rutaId);
         model.addAttribute("stanica", stanicaService.findById(stanicaId).get());
         model.addAttribute("zone", zonaService.listAll());
         return "stanica";
     }
+
+    @PostMapping("/edit")
+    public String getEditView(Model model, @RequestParam long rutaId) {
+        Stanica stanica = new Stanica();
+        stanica.setNaziv("Nova");
+        stanica.setLokacija("Ulica 1");
+        stanica.setZona(zonaService.listAll().get(0));
+        model.addAttribute("rutaId", rutaId);
+        model.addAttribute("stanica", stanica);
+        model.addAttribute("zone", zonaService.listAll());
+        return "stanica";
+    }
+
 }
