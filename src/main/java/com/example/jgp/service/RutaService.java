@@ -26,4 +26,16 @@ public class RutaService {
     public Ruta create(Ruta ruta) {
         return repo.save(ruta);
     }
+
+    public Ruta update(Ruta update_ruta) {
+        Ruta ruta = findById(update_ruta.getId()).get();
+        ruta.setNaziv(update_ruta.getNaziv());
+        ruta.setAdmin(update_ruta.getAdmin());
+        return repo.save(ruta);
+    }
+
+    public void deleteById(long id) {
+        repo.deleteById(id);
+    }
+
 }

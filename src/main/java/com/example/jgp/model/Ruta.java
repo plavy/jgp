@@ -27,9 +27,6 @@ public class Ruta {
     private String naziv;
 
     @ManyToOne
-    private Stanica smjer;
-
-    @ManyToOne
     private Admin admin;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
@@ -51,14 +48,6 @@ public class Ruta {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
-    }
-
-    public Stanica getSmjer() {
-        return smjer;
-    }
-
-    public void setSmjer(Stanica smjer) {
-        this.smjer = smjer;
     }
 
     public List<Stanica> getStanice() {

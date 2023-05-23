@@ -7,21 +7,29 @@
 
 <body>
 
-    <button type="button">Prethodna ruta</button>
-    <button type="button">Sljedeća ruta</button>
+    <form th:action="@{/__${prev_id}__}">
+        <input type="submit" value="Prethodna ruta"></button>
+    </form>
+    <form th:action="@{/__${prev_id}__}">
+        <input type="submit" value="Sljedeća ruta"></button>
+    </form>
 
     <br>
     <br>
-    <form action="/action_page.php">
-        <label for="naziv">Naziv</label>
-        <input type="text" id="naziv" name="fname"><br><br>
-        <label for="admin">Administrator</label>
-        <select id="admin" name="admin">
-            <option th:each="admin: ${admins}" value="${admin.id}" th:text="${admin.naziv}" selected="${admin.id == current_admin.id}" ></option>
+    <form action="/ruta/update" th:object="${update_ruta}" method="post">
+        <input type="hidden" name="id" th:value="${ruta.id}">
+        <label for="naziv">Naziv rute:</label>
+        <input type="text" id="naziv" name="naziv" th:value="${ruta.naziv}"><br><br>
+        <label for="admin">Administrator:</label>
+        <select id="adminId" name="adminId">
+            <option th:each="admin: ${admins}" th:value="${admin.id}" th:text="${admin.naziv}"
+                th:selected="${admin.id == ruta.admin.id}"></option>
         </select>
         <br><br>
         <input type="submit" value="Spremi">
-        <button type="button">Izbriši</button>
+    </form>
+    <form th:action="@{ruta/delete/__${ruta.id}__}" method="post">
+        <input type="submit" value="Izbriši"></button>
     </form>
 
     <br>
