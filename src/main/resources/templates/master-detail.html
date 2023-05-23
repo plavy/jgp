@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Javni gradski prijevoz</title>
+
+<head>
+</head>
+
+<body>
+
+    <button type="button">Prethodna ruta</button>
+    <button type="button">Sljedeća ruta</button>
+
+    <br>
+    <br>
+    <form action="/action_page.php">
+        <label for="naziv">Naziv</label>
+        <input type="text" id="naziv" name="fname"><br><br>
+        <label for="admin">Administrator</label>
+        <select id="admin" name="admin">
+            <option th:each="admin: ${admins}" value="${admin.id}" th:text="${admin.naziv}" selected="${admin.id == current_admin.id}" ></option>
+        </select>
+        <br><br>
+        <input type="submit" value="Spremi">
+        <button type="button">Izbriši</button>
+    </form>
+
+    <br>
+    <hr>
+    <br>
+    <h3>Stanice</h3>
+    <hr>
+
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Naziv</th>
+            <th>Lokacija</th>
+            <th>Zona</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="stanica: ${stanice}">
+            <td th:text="${stanica.id}" />
+            <td th:text="${stanica.naziv}" />
+            <td th:text="${stanica.lokacija}" />
+            <td th:text="${stanica.zona}" />
+        </tr>
+    </table>
+    <br>
+    <button type="button">Nova stanica</button>
+
+</body>
+
+</html>
