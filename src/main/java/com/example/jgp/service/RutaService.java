@@ -34,6 +34,12 @@ public class RutaService {
         return repo.save(ruta);
     }
 
+    public Ruta updateStanice(Ruta update_ruta) {
+        Ruta ruta = findById(update_ruta.getId()).get();
+        ruta.setStanice(update_ruta.getStanice());
+        return repo.save(ruta);
+    }
+
     public void deleteById(long id) {
         repo.deleteById(id);
     }

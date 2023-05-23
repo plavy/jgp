@@ -53,6 +53,16 @@
             <td th:text="${stanica.naziv}" />
             <td th:text="${stanica.lokacija}" />
             <td th:text="${stanica.zona}" />
+            <td>
+                <form>
+                    <input type="submit" value="Uredi"></button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/ruta/remove/__${ruta.id}__(stanicaId=${stanica.id})}" method="post">
+                    <input type="submit" value="Ukloni"></button>
+                </form>
+            </td>
         </tr>
     </table>
     <br>

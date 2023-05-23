@@ -7,15 +7,18 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jgp.dto.RutaDTO;
 import com.example.jgp.model.Ruta;
+import com.example.jgp.model.Stanica;
+import com.example.jgp.repository.StanicaRepository;
 import com.example.jgp.service.AdminService;
 import com.example.jgp.service.RutaService;
+import com.example.jgp.service.StanicaService;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/ruta")
@@ -26,6 +29,9 @@ public class RutaController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    StanicaService stanicaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public void update(RutaDTO update_ruta, HttpServletResponse response) {
@@ -46,6 +52,19 @@ public class RutaController {
         rutaService.deleteById(rutaId);
         try {
             response.sendRedirect("/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PostMapping("/remove/{rutaId}")
+    public void removeStanica(@PathVariable long rutaId, @RequestParam long stanicaId, HttpServletResponse response) {
+        Ruta ruta = rutaService.findById(rutaId).get();
+        Stanica stanica = stanicaService.findById(stanicaId).get();
+        ruta.removeStanica(stanica);
+        rutaService.updateStanice(ruta);
+        try {
+            response.sendRedirect("/" + ruta.getId());
         } catch (IOException e) {
             e.printStackTrace();
         }

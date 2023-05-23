@@ -1,6 +1,7 @@
 package com.example.jgp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,16 @@ public class StanicaService {
         return repo.findAll();
     }
 
+    public Optional<Stanica> findById(Long id) {
+        return repo.findById(id);
+    }
+
     public Stanica create(Stanica stanica) {
         return repo.save(stanica);
     }
+
+    public void deleteById(long id) {
+        repo.deleteById(id);
+    }
+
 }
