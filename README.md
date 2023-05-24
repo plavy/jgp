@@ -2,6 +2,8 @@
 
 ## Pokretanje
 
+Potreban je Maven.
+
 ```bash
 mvn spring-boot:run
 ```

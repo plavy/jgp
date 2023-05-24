@@ -51,7 +51,6 @@ public class IntegrationTests {
         stanica.setZona(zona);
         stanicaService.create(stanica);
 
-
         boolean is_present = stanicaRepository.findById(stanica.getId()).isPresent();
 
         stanicaService.deleteById(stanica.getId());
