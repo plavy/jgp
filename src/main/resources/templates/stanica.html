@@ -3,11 +3,16 @@
 <title>Administratori - Javni gradski prijevoz</title>
 
 <head>
+    <link rel="stylesheet" th:href="@{/app.css}">
+    <div class="topnav">
+        <a href="/rute">Rute</a>
+        <a href="/administratori">Administratori</a>
+    </div>
 </head>
 
 <body>
 
-    <h3>Uređivanje stanice</h3>
+    <h2>Uređivanje stanice</h2>
     <hr>
     <form th:action="@{/stanica/update(rutaId=${rutaId})}" th:object="${stanica}" method="post">
         <input type="hidden" name="id" th:value="${stanica.id}">
@@ -21,7 +26,7 @@
                 th:selected="${zona.id == stanica.zona.id}"></option>
         </select>
         <br><br>
-        <input type="submit" value="Spremi">
+        <input class="button" type="submit" value="Spremi">
     </form>
 
 </body>

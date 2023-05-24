@@ -3,13 +3,16 @@
 <title>Administratori - Javni gradski prijevoz</title>
 
 <head>
-    <a href="/rute">Rute</a>
-    <a href="/administratori">Administratori</a>
+    <link rel="stylesheet" th:href="@{/app.css}">
+    <div class="topnav">
+        <a href="/rute">Rute</a>
+        <a href="/administratori">Administratori</a>
+    </div>
 </head>
 
 <body>
 
-    <h3>Administratori</h3>
+    <h2>Administratori</h2>
     <hr>
     <table>
         <tr>
@@ -18,7 +21,7 @@
             <th>Email</th>
         </tr>
         <tr th:each="admin: ${admins}">
-            <td th:text="${admin.id}" />
+            <td class="id" th:text="${admin.id}" />
             <td th:text="${admin.naziv}" />
             <td th:text="${admin.mail}" />
         </tr>

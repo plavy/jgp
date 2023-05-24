@@ -3,13 +3,16 @@
 <title>Administratori - Javni gradski prijevoz</title>
 
 <head>
-    <a href="/rute">Rute</a>
-    <a href="/administratori">Administratori</a>
+    <link rel="stylesheet" th:href="@{/app.css}">
+    <div class="topnav">
+        <a href="/rute">Rute</a>
+        <a href="/administratori">Administratori</a>
+    </div>
 </head>
 
 <body>
 
-    <h3>Rute</h3>
+    <h2>Rute</h2>
     <hr>
     <table>
         <tr>
@@ -19,12 +22,12 @@
             <th></th>
         </tr>
         <tr th:each="ruta: ${rute}">
-            <td th:text="${ruta.id}" />
+            <td class="id" th:text="${ruta.id}" />
             <td th:text="${ruta.naziv}" />
             <td th:text="${ruta.admin.naziv}" />
             <td>    
-                <form th:action="@{/__${ruta.id}__}" method="get">
-                    <input type="submit" value="Više detalja">
+                <form th:action="@{/view/__${ruta.id}__}" method="get">
+                    <input class="button" type="submit" value="Više detalja">
                 </form>
             </td>
         </tr>

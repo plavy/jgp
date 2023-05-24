@@ -3,19 +3,24 @@
 <title>Javni gradski prijevoz</title>
 
 <head>
-    <a href="/rute">Rute</a>
-    <a href="/administratori">Administratori</a>
+    <link rel="stylesheet" th:href="@{/app.css}">
+    <div class="topnav">
+        <a href="/rute">Rute</a>
+        <a href="/administratori">Administratori</a>
+    </div>
 </head>
 
-<body>
 
-    <br>
-    <br>
-    <form th:action="@{/__${prev_id}__}">
-        <input type="submit" value="Prethodna ruta">
+<body>
+    <h2>
+        <span>Ruta </span>
+        <span th:text="${ruta.naziv}"></span>
+    </h2>
+    <form class="formline" th:action="@{/view/__${prev_id}__}">
+        <input class="button" type="submit" value="Prethodna ruta">
     </form>
-    <form th:action="@{/__${next_id}__}">
-        <input type="submit" value="Sljedeća ruta">
+    <form class="formline" th:action="@{/view/__${next_id}__}">
+        <input class="button" type="submit" value="Sljedeća ruta">
     </form>
 
     <br>
@@ -23,17 +28,17 @@
     <form action="/ruta/update" th:object="${update_ruta}" method="post">
         <input type="hidden" name="id" th:value="${ruta.id}">
         <label for="naziv">Naziv rute:</label>
-        <input type="text" name="naziv" th:value="${ruta.naziv}"><br><br>
+        <input class="nazivRute" type="text" name="naziv" th:value="${ruta.naziv}"><br><br>
         <label for="adminId">Administrator:</label>
-        <select name="adminId">
+        <select class="selectAdmin" name="adminId">
             <option th:each="admin: ${admins}" th:value="${admin.id}" th:text="${admin.naziv}"
                 th:selected="${admin.id == ruta.admin.id}"></option>
         </select>
         <br><br>
-        <input type="submit" value="Spremi">
+        <input class="button" type="submit" value="Spremi">
     </form>
-    <form th:action="@{ruta/delete/__${ruta.id}__}" method="post">
-        <input type="submit" value="Izbriši">
+    <form class="izbrisi" th:action="@{/ruta/delete/__${ruta.id}__}" method="post">
+        <input class="button" type="submit" value="Izbriši">
     </form>
 
     <br>
@@ -52,25 +57,25 @@
             <th></th>
         </tr>
         <tr th:each="stanica: ${stanice}">
-            <td th:text="${stanica.id}" />
+            <td class="id" th:text="${stanica.id}" />
             <td th:text="${stanica.naziv}" />
-            <td th:text="${stanica.lokacija}" />
+            <td class="lokacija" th:text="${stanica.lokacija}" />
             <td th:text="${stanica.zona}" />
             <td>
                 <form th:action="@{/edit/__${stanica.id}__(rutaId=${ruta.id})}" method="post">
-                    <input type="submit" value="Uredi">
+                    <input class="button" type="submit" value="Uredi">
                 </form>
             </td>
             <td>
                 <form th:action="@{/ruta/remove/__${ruta.id}__(stanicaId=${stanica.id})}" method="post">
-                    <input type="submit" value="Ukloni">
+                    <input class="button" type="submit" value="Ukloni">
                 </form>
             </td>
         </tr>
     </table>
     <br>
     <form th:action="@{/edit(rutaId=${ruta.id})}" method="post">
-        <input type="submit" value="Nova stanica na ruti">
+        <input class="button" type="submit" value="Nova stanica na ruti">
     </form>
 
 </body>

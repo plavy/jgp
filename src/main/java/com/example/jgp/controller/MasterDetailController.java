@@ -38,10 +38,10 @@ public class MasterDetailController {
     @GetMapping("")
     public String redirectToRuta() {
         long id = rutaService.listAll().get(0).getId();
-        return "redirect:/" + id;
+        return "redirect:/view/" + id;
     }
 
-    @GetMapping("/{rutaId}")
+    @GetMapping("/view/{rutaId}")
     public String getView(Model model, @PathVariable long rutaId) {
         Ruta ruta = rutaService.findById(rutaId).get();
         List<Ruta> listRuta = rutaService.listAll();

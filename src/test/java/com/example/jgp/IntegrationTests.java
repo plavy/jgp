@@ -12,9 +12,10 @@ import com.example.jgp.service.ZonaService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @SpringBootTest
-public class IntegrationTest1 {
-    
+public class IntegrationTests {
+
     @Autowired
     ZonaService zonaService;
 
@@ -36,6 +37,12 @@ public class IntegrationTest1 {
         stanica.setZona(zona);
         stanicaService.create(stanica);
 
-        assertThat(stanicaRepository.findById(stanica.getId() +1 )).isNotNull();
+
+        boolean is_present = stanicaRepository.findById(stanica.getId()).isPresent();
+
+        stanicaService.deleteById(stanica.getId());
+        zonaService.deleteById(zona.getId());
+
+        assertThat(is_present).isEqualTo(true);
     }
 }

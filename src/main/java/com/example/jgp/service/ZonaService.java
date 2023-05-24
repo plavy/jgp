@@ -26,4 +26,8 @@ public class ZonaService {
     public Zona create(Zona zona) {
         return repo.save(zona);
     }
+
+    public void deleteById(long id) {
+        repo.deleteById(id);
+    }
 }

@@ -48,7 +48,7 @@ public class StanicaController {
             rutaService.update(ruta);
         }
         try {
-            response.sendRedirect("/" + rutaId);
+            response.sendRedirect("/view/" + rutaId);
         } catch (IOException e) {
             e.printStackTrace();
         }

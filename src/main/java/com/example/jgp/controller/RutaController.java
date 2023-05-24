@@ -40,7 +40,7 @@ public class RutaController {
         ruta.setAdmin(adminService.findById(Long.valueOf(update_ruta.getAdminId())).get());
         rutaService.update(ruta);
         try {
-            response.sendRedirect("/" + ruta.getId());
+            response.sendRedirect("/view/" + ruta.getId());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class RutaController {
         ruta.removeStanica(stanica);
         rutaService.updateStanice(ruta);
         try {
-            response.sendRedirect("/" + ruta.getId());
+            response.sendRedirect("/view/" + ruta.getId());
         } catch (IOException e) {
             e.printStackTrace();
         }

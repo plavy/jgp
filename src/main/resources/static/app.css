@@ -1,0 +1,55 @@
+th {
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: whitesmoke;
+}
+
+td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.formline {
+    display: inline;
+}
+
+.izbrisi {
+    margin-top: 5px;
+}
+
+.button {
+    border: none;
+    padding: 5px;
+    background-color: lightblue;
+    border-radius: 5px;
+}
+
+body {
+    max-width: 850px;
+    margin: auto;
+    font-family: Helvetica, Arial, Sans-Serif;
+}
+
+.topnav {
+    background-color: lightblue;
+    overflow: hidden;
+    height: 50px;
+    display: flex;
+    align-content: center;
+}
+
+.topnav a {
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+    color: black;
+}
+
+.nazivRute {
+    width: 200px;
+}
+
+.selectAdmin {
+    width: 186px;
+}

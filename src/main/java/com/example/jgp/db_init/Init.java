@@ -69,7 +69,7 @@ public class Init {
 
             Stanica stanica5 = new Stanica();
             stanica5.setNaziv("Savski Most");
-            stanica5.setLokacija("Savsa cesta 196");
+            stanica5.setLokacija("Savska cesta 196");
             stanica5.setZona(zona2);
             stanicaService.create(stanica5);
 
