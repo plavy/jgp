@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Administratori - Javni gradski prijevoz</title>
+
+<head>
+</head>
+
+<body>
+
+    <h3>Rute</h3>
+    <hr>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Naziv</th>
+            <th>Administrator</th>
+            <th></th>
+        </tr>
+        <tr th:each="ruta: ${rute}">
+            <td th:text="${ruta.id}" />
+            <td th:text="${ruta.naziv}" />
+            <td th:text="${ruta.admin.naziv}" />
+            <td>    
+                <form th:action="@{/__${ruta.id}__}" method="get">
+                    <input type="submit" value="Više detalja">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

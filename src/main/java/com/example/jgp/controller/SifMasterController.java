@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.jgp.service.AdminService;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/administratori")
+public class SifMasterController {
     
     @Autowired
     private AdminService adminService;
