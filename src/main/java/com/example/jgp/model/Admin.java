@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name = "Administratori")
@@ -18,6 +19,7 @@ public class Admin {
     @Column(nullable = false)
     private String naziv;
 
+    @Email
     @Column(nullable = false)
     private String mail;
 

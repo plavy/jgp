@@ -33,7 +33,10 @@ public class RutaController {
     private StanicaService stanicaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void update(RutaDTO update_ruta, HttpServletResponse response) {
+    public String update(RutaDTO update_ruta, HttpServletResponse response) {
+        if (update_ruta.getNaziv().length() < 1 ) {
+            return "ERROR Naziv mora imati barem 1 znak.";
+        }
         Ruta ruta = new Ruta();
         ruta.setId(Long.valueOf(update_ruta.getId()));
         ruta.setNaziv(update_ruta.getNaziv());
@@ -44,6 +47,7 @@ public class RutaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     @PostMapping("/delete/{rutaId}")
@@ -67,6 +71,23 @@ public class RutaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @PostMapping(value = "/add/{rutaId}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String addStanica(long stanicaId, @PathVariable long rutaId, HttpServletResponse response){
+        Ruta ruta = rutaService.findById(rutaId).get();
+        Stanica stanica = stanicaService.findById(stanicaId).get();
+        if (ruta.getStanice().contains(stanica)) {
+            return "ERROR Stanica je već u ruti.";
+        }
+        ruta.addStanica(stanica);
+        rutaService.updateStanice(ruta);
+        try {
+            response.sendRedirect("/view/" + ruta.getId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 }

@@ -53,3 +53,13 @@ body {
 .selectAdmin {
     width: 186px;
 }
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.form-inline input {
+    margin: 5px;
+}

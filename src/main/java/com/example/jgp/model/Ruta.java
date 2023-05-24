@@ -24,7 +24,7 @@ public class Ruta {
     @Column(name = "rutaId")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String naziv;
 
     @ManyToOne

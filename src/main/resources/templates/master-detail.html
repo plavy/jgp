@@ -73,10 +73,20 @@
             </td>
         </tr>
     </table>
+    <hr>
+    
+    <form th:action="@{/ruta/add/__${ruta.id}__}" method="post">
+        <select name="stanicaId">
+            <option th:each="stanica: ${sve_stanice}" th:value="${stanica.id}" th:text="${'#' + stanica.id + ' ' + stanica.naziv}"></option>
+        </select>
+        <input class="button" type="submit" value="Dodaj stanicu na rutu">
+    </form>
     <br>
+    
     <form th:action="@{/edit(rutaId=${ruta.id})}" method="post">
         <input class="button" type="submit" value="Nova stanica na ruti">
     </form>
+    <br>
 
 </body>
 

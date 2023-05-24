@@ -37,8 +37,13 @@ public class MasterDetailController {
 
     @GetMapping("")
     public String redirectToRuta() {
-        long id = rutaService.listAll().get(0).getId();
-        return "redirect:/view/" + id;
+        List<Ruta> rute = rutaService.listAll();
+        if (rute.size() > 0) {
+            long id = rutaService.listAll().get(0).getId();
+            return "redirect:/view/" + id;
+        } else {
+            return "redirect:/rute";
+        }
     }
 
     @GetMapping("/view/{rutaId}")
@@ -54,6 +59,7 @@ public class MasterDetailController {
         model.addAttribute("stanice", ruta.getStanice());
         model.addAttribute("admins", adminService.listAll());
         model.addAttribute("update_ruta", new RutaDTO());
+        model.addAttribute("sve_stanice", stanicaService.listAll());
         return "master-detail";
     }
 

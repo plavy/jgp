@@ -33,7 +33,10 @@ public class StanicaController {
     private RutaService rutaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void update(StanicaDTO update_stanica, @RequestParam long rutaId, HttpServletResponse response) {
+    public String update(StanicaDTO update_stanica, @RequestParam long rutaId, HttpServletResponse response) {
+        if (update_stanica.getNaziv().length() < 1 || update_stanica.getLokacija().length() < 1) {
+            return "ERROR Naziv i lokacija moraju imati barem 1 znak.";
+        }
         Stanica stanica = new Stanica();
         stanica.setNaziv(update_stanica.getNaziv());
         stanica.setLokacija(update_stanica.getLokacija());
@@ -52,6 +55,7 @@ public class StanicaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
 }
