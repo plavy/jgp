@@ -67,6 +67,12 @@ public class Init {
             stanica4.setZona(zona2);
             stanicaService.create(stanica4);
 
+            Stanica stanica5 = new Stanica();
+            stanica5.setNaziv("Savski Most");
+            stanica5.setLokacija("Savsa cesta 196");
+            stanica5.setZona(zona2);
+            stanicaService.create(stanica5);
+
             Admin admin1 = new Admin();
             admin1.setNaziv("Petar Poljak");
             admin1.setMail("ppoljak@admin.com");
@@ -88,6 +94,12 @@ public class Init {
             ruta2.setStanice(List.of(stanica3, stanica4));
             ruta2.setAdmin(admin1);
             rutaService.create(ruta2);
+
+            Ruta ruta3 = new Ruta();
+            ruta3.setNaziv("3");
+            ruta3.setStanice(List.of(stanica5, stanica1));
+            ruta3.setAdmin(admin2);
+            rutaService.create(ruta3);
         }
 
     }

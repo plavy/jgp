@@ -20,8 +20,10 @@ public class Stanica {
     @Column(name = "stanicaId")
     private Long id;
 
+    @Column(nullable = false)
     private String naziv;
 
+    @Column(nullable = false)
     private String lokacija;
 
     @ManyToOne
