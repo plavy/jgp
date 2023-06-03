@@ -5,17 +5,31 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>2.7.9</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>jgp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>jgp</name>
 	<description>Javni gradski prijevoz</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
+	<dependencyManagement>
+	<dependencies>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-bom</artifactId>
+        <version>7.19.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -55,6 +69,19 @@
 			<artifactId>assertj-core</artifactId>
 			<version>3.11.1</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+  			<groupId>org.camunda.bpm.springboot</groupId>
+  			<artifactId>camunda-bpm-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+  			<groupId>org.camunda.bpm.springboot</groupId>
+  			<artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+		</dependency>
+		<dependency>
+  			<groupId>org.camunda.bpm.springboot</groupId>
+  			<artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
 		</dependency>
 
 	</dependencies>

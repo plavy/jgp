@@ -17,7 +17,7 @@ import com.example.jgp.service.AdminService;
 import com.example.jgp.service.RutaService;
 import com.example.jgp.service.StanicaService;
 
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/ruta")
