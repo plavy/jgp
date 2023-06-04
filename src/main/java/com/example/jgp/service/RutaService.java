@@ -37,6 +37,7 @@ public class RutaService {
     public Ruta updateStanice(Ruta update_ruta) {
         Ruta ruta = findById(update_ruta.getId()).get();
         ruta.setStanice(update_ruta.getStanice());
+        ruta.setZahtjevaneStanice(update_ruta.getZahtjevaneStanice());
         return repo.save(ruta);
     }
 

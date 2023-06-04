@@ -35,6 +35,11 @@ public class Ruta {
     @OrderColumn
     private List<Stanica> stanice;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE })
+    @JoinTable(joinColumns = @JoinColumn(name = "rutaId"), inverseJoinColumns = @JoinColumn(name = "stanicaId"))
+    @OrderColumn
+    private List<Stanica> zahtjevaneStanice;
+
     public Long getId() {
         return id;
     }
@@ -71,6 +76,25 @@ public class Ruta {
             throw new IllegalArgumentException("Stanica je već u ruti.");
         }
         this.stanice.add(stanica);
+    }
+
+    public List<Stanica> getZahtjevaneStanice() {
+        return zahtjevaneStanice;
+    }
+
+    public void setZahtjevaneStanice(List<Stanica> stanice) {
+        this.zahtjevaneStanice = stanice;
+    }
+
+    public void removeZahtjevanaStanica(Stanica stanica) {
+        this.zahtjevaneStanice.remove(stanica);
+    }
+
+    public void addZahtjevanaStanica(Stanica stanica) {
+        if (this.zahtjevaneStanice.contains(stanica)) {
+            throw new IllegalArgumentException("Stanica je već u ruti.");
+        }
+        this.zahtjevaneStanice.add(stanica);
     }
 
     public Admin getAdmin() {

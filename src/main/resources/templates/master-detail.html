@@ -83,8 +83,12 @@
     </form>
     <br>
     
-    <form th:action="@{/edit(rutaId=${ruta.id})}" method="post">
+    <form class="formline" th:action="@{/edit(rutaId=${ruta.id})}" method="post">
         <input class="button" type="submit" value="Nova stanica na ruti">
+    </form>
+
+    <form class="formline" th:action="@{/request(rutaId=${ruta.id})}" method="post">
+        <input class="button" type="submit" value="Zatraži novu stanicu na ruti">
     </form>
     <br>
 

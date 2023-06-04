@@ -12,9 +12,9 @@
 
 <body>
 
-    <h2>Uređivanje stanice</h2>
+    <h2>Zahtjev za stanicu</h2>
     <hr>
-    <form th:action="@{/stanica/update(rutaId=${rutaId})}" th:object="${stanica}" method="post">
+    <form th:action="@{/stanica/request(rutaId=${rutaId})}" th:object="${stanica}" method="post">
         <input type="hidden" name="id" th:value="${stanica.id}">
         <label for="naziv">Naziv:</label>
         <input type="text" name="naziv" th:value="${stanica.naziv}"><br><br>
@@ -26,7 +26,7 @@
                 th:selected="${zona.id == stanica.zona.id}"></option>
         </select>
         <br><br>
-        <input class="button" type="submit" value="Spremi">
+        <input class="button" type="submit" value="Napravi zahtjev">
     </form>
 
 </body>

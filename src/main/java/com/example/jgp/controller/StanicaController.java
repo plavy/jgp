@@ -59,4 +59,31 @@ public class StanicaController {
         return "";
     }
 
+    @PostMapping(value = "/request", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String request(StanicaDTO update_stanica, @RequestParam long rutaId, HttpServletResponse response) {
+        Stanica stanica = new Stanica();
+        try {
+            stanica.setNaziv(update_stanica.getNaziv());
+            stanica.setLokacija(update_stanica.getLokacija());
+            stanica.setZona(zonaService.findById(Long.valueOf(update_stanica.getZonaId())).get());
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+
+        if (!update_stanica.getId().isEmpty()) {
+            return "Not yet supported";
+        } else {
+            stanicaService.create(stanica);
+            Ruta ruta = rutaService.findById(rutaId).get();
+            ruta.addZahtjevanaStanica(stanica);
+            rutaService.update(ruta);
+        }
+        try {
+            response.sendRedirect("/view/" + rutaId);
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+        return "";
+    }
+
 }

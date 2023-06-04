@@ -23,11 +23,17 @@
             <th>#</th>
             <th>Naziv</th>
             <th>Email</th>
+            <th></th>
         </tr>
         <tr th:each="admin: ${admins}">
             <td class="id" th:text="${admin.id}" />
             <td th:text="${admin.naziv}" />
             <td th:text="${admin.mail}" />
+            <td>
+                <form th:action="@{/admin/view/__${admin.id}__}" method="get">
+                    <input class="button" type="submit" value="Pregledaj zahtjeve">
+                </form>
+            </td>
         </tr>
     </table>
 

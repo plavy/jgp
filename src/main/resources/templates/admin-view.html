@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Administrator - Javni gradski prijevoz</title>
+
+<head>
+    <link rel="stylesheet" th:href="@{/app.css}">
+    <div class="topnav">
+        <a href="/rute">Rute</a>
+        <a href="/administratori">Administratori</a>
+    </div>
+</head>
+
+
+<body>
+    <h2>
+        <span>Administrator </span>
+        <span th:text="${admin.naziv}"></span>
+    </h2>
+
+    <hr>
+    <h3>Zahtjevi za stanice</h3>
+    <hr>
+
+    <table>
+        <tr>
+            <th>Ruta</th>
+            <th>Naziv</th>
+            <th>Lokacija</th>
+            <th>Zona</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="stanica: ${stanice}">
+            <td class="rutaId" th:text="${mapa[stanica.id].naziv}" />
+            <td th:text="${stanica.naziv}" />
+            <td class="lokacija" th:text="${stanica.lokacija}" />
+            <td th:text="${stanica.zona}" />
+            <td>
+                <form th:action="@{/ruta/add/__${mapa[stanica.id].id}__(stanicaId=${stanica.id})}" method="post">
+                    <input class="button" type="submit" value="Prihvati">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/ruta/remove/__${mapa[stanica.id].id}__(stanicaId=${stanica.id})}" method="post">
+                    <input class="button" type="submit" value="Odbij">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    
+</body>
+
+</html>

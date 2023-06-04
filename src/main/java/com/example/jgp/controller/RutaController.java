@@ -65,8 +65,14 @@ public class RutaController {
     public void removeStanica(@PathVariable long rutaId, @RequestParam long stanicaId, HttpServletResponse response) {
         Ruta ruta = rutaService.findById(rutaId).get();
         Stanica stanica = stanicaService.findById(stanicaId).get();
-        ruta.removeStanica(stanica);
-        rutaService.updateStanice(ruta);
+        if (ruta.getStanice().contains(stanica)) {
+            ruta.removeStanica(stanica);
+            rutaService.updateStanice(ruta); 
+        }
+        if (ruta.getZahtjevaneStanice().contains(stanica)) {
+            ruta.removeZahtjevanaStanica(stanica);
+            rutaService.updateStanice(ruta);
+        }
         try {
             response.sendRedirect("/view/" + ruta.getId());
         } catch (IOException e) {
@@ -80,6 +86,9 @@ public class RutaController {
         Stanica stanica = stanicaService.findById(stanicaId).get();
         try {
             ruta.addStanica(stanica);
+            if(ruta.getZahtjevaneStanice().contains(stanica)) {
+                ruta.removeZahtjevanaStanica(stanica);
+            }
             rutaService.updateStanice(ruta);
         } catch (IllegalArgumentException e) {
             return e.getMessage();

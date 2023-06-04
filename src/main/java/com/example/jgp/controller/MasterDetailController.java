@@ -83,4 +83,16 @@ public class MasterDetailController {
         return "stanica";
     }
 
+    @PostMapping("/request")
+    public String getRequestView(Model model, @RequestParam long rutaId) {
+        Stanica stanica = new Stanica();
+        stanica.setNaziv("Nova");
+        stanica.setLokacija("Ulica 1");
+        stanica.setZona(zonaService.listAll().get(0));
+        model.addAttribute("rutaId", rutaId);
+        model.addAttribute("stanica", stanica);
+        model.addAttribute("zone", zonaService.listAll());
+        return "stanica-request";
+    }   
+
 }
