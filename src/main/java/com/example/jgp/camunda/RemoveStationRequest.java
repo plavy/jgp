@@ -12,7 +12,7 @@ import com.example.jgp.service.RutaService;
 import com.example.jgp.service.StanicaService;
 
 @Named
-public class CreateNewStation implements JavaDelegate {
+public class RemoveStationRequest implements JavaDelegate {
 
     @Autowired
     RutaService rutaService;
@@ -24,7 +24,6 @@ public class CreateNewStation implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         Ruta ruta = rutaService.findByName(execution.getVariable("ruta").toString());
         Stanica stanica = stanicaService.findById(Long.valueOf(execution.getVariable("id").toString())).get();
-        ruta.addStanica(stanica);
         ruta.removeZahtjevanaStanica(stanica);
         rutaService.updateStanice(ruta);
     }

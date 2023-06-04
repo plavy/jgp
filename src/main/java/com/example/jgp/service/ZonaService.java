@@ -23,6 +23,10 @@ public class ZonaService {
         return repo.findById(id);
     }
 
+    public Zona findByName(String name) {
+        return repo.findByNaziv(name);
+    }
+
     public Zona create(Zona zona) {
         return repo.save(zona);
     }

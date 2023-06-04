@@ -1,0 +1,65 @@
+{
+  "components": [
+    {
+      "label": "Naziv stanice",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_16a1onl",
+        "columns": null
+      },
+      "id": "Field_00hkz2e",
+      "key": "naziv",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Lokacija stanice",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1t7sxjl",
+        "columns": null
+      },
+      "id": "Field_17ovnzq",
+      "key": "lokacija",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Naziv postojeće zone",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_02zcsil",
+        "columns": null
+      },
+      "id": "Field_0du4ku0",
+      "key": "zona",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Naziv postojeće rute",
+      "type": "textfield",
+      "layout": {
+        "row": null,
+        "columns": null
+      },
+      "id": "Field_161qm0s",
+      "key": "ruta",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "stanicaRequest",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

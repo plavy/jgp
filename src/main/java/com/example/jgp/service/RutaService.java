@@ -23,6 +23,10 @@ public class RutaService {
         return repo.findById(id);
     }
 
+    public Ruta findByName(String name) {
+        return repo.findByNaziv(name);
+    }
+
     public Ruta create(Ruta ruta) {
         return repo.save(ruta);
     }
