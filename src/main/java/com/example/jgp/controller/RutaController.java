@@ -34,18 +34,19 @@ public class RutaController {
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String update(RutaDTO update_ruta, HttpServletResponse response) {
-        if (update_ruta.getNaziv().length() < 1 ) {
-            return "ERROR Naziv mora imati barem 1 znak.";
-        }
         Ruta ruta = new Ruta();
-        ruta.setId(Long.valueOf(update_ruta.getId()));
-        ruta.setNaziv(update_ruta.getNaziv());
-        ruta.setAdmin(adminService.findById(Long.valueOf(update_ruta.getAdminId())).get());
+        try {
+            ruta.setId(Long.valueOf(update_ruta.getId()));
+            ruta.setNaziv(update_ruta.getNaziv());
+            ruta.setAdmin(adminService.findById(Long.valueOf(update_ruta.getAdminId())).get());
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
         rutaService.update(ruta);
         try {
             response.sendRedirect("/view/" + ruta.getId());
         } catch (IOException e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
         return "";
     }
@@ -77,15 +78,16 @@ public class RutaController {
     public String addStanica(long stanicaId, @PathVariable long rutaId, HttpServletResponse response){
         Ruta ruta = rutaService.findById(rutaId).get();
         Stanica stanica = stanicaService.findById(stanicaId).get();
-        if (ruta.getStanice().contains(stanica)) {
-            return "ERROR Stanica je već u ruti.";
+        try {
+            ruta.addStanica(stanica);
+            rutaService.updateStanice(ruta);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
         }
-        ruta.addStanica(stanica);
-        rutaService.updateStanice(ruta);
         try {
             response.sendRedirect("/view/" + ruta.getId());
         } catch (IOException e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
         return "";
     }

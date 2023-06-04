@@ -18,30 +18,31 @@ import com.example.jgp.service.ZonaService;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 @RestController
 @RequestMapping("/stanica")
 public class StanicaController {
-    
+
     @Autowired
     private StanicaService stanicaService;
 
     @Autowired
-    private ZonaService zonaService;   
+    private ZonaService zonaService;
 
     @Autowired
     private RutaService rutaService;
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String update(StanicaDTO update_stanica, @RequestParam long rutaId, HttpServletResponse response) {
-        if (update_stanica.getNaziv().length() < 1 || update_stanica.getLokacija().length() < 1) {
-            return "ERROR Naziv i lokacija moraju imati barem 1 znak.";
-        }
         Stanica stanica = new Stanica();
-        stanica.setNaziv(update_stanica.getNaziv());
-        stanica.setLokacija(update_stanica.getLokacija());
-        stanica.setZona(zonaService.findById(Long.valueOf(update_stanica.getZonaId())).get());
-        if (! update_stanica.getId().isEmpty()) {
+        try {
+            stanica.setNaziv(update_stanica.getNaziv());
+            stanica.setLokacija(update_stanica.getLokacija());
+            stanica.setZona(zonaService.findById(Long.valueOf(update_stanica.getZonaId())).get());
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+
+        if (!update_stanica.getId().isEmpty()) {
             stanica.setId(Long.valueOf(update_stanica.getId()));
             stanicaService.update(stanica);
         } else {
@@ -53,7 +54,7 @@ public class StanicaController {
         try {
             response.sendRedirect("/view/" + rutaId);
         } catch (IOException e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
         return "";
     }

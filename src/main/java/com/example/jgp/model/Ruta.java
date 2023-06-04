@@ -48,6 +48,9 @@ public class Ruta {
     }
 
     public void setNaziv(String naziv) {
+        if (naziv.length() < 1) {
+            throw new IllegalArgumentException("Naziv rute mora imati barem 1 znak");
+        }
         this.naziv = naziv;
     }
 
@@ -64,6 +67,9 @@ public class Ruta {
     }
 
     public void addStanica(Stanica stanica) {
+        if (this.stanice.contains(stanica)) {
+            throw new IllegalArgumentException("Stanica je već u ruti.");
+        }
         this.stanice.add(stanica);
     }
 

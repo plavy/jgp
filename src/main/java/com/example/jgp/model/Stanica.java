@@ -45,6 +45,9 @@ public class Stanica {
     }
 
     public void setNaziv(String naziv) {
+        if (naziv.length() < 1) {
+            throw new IllegalArgumentException("Naziv stanice mora imati barem 1 znak.");
+        }
         this.naziv = naziv;
     }
 
@@ -53,6 +56,9 @@ public class Stanica {
     }
 
     public void setLokacija(String lokacija) {
+        if (lokacija.length() < 1) {
+            throw new IllegalArgumentException("Lokacija stanice mora imati barem 1 znak.");
+        }
         this.lokacija = lokacija;
     }
 
