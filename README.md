@@ -1,5 +1,7 @@
 # Javni gradski prijevoz
 
+Kolegij *Informacijski sustavi* 2022./2023.
+
 ## Pokretanje
 
 Potreban je Maven.
